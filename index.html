@@ -1,556 +1,346 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Happy Project | A Better Way</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --coral: #F4A261;
-            --coral-light: #F9C89B;
-            --coral-dark: #E07B3A;
-            --cream: #FDF8F4;
-            --warm-white: #FFFAF7;
-            --text-dark: #2D2A26;
-            --text-muted: #6B6560;
-            --text-light: #8A8380;
-            --shadow-soft: 0 4px 30px rgba(244, 162, 97, 0.12);
-            --shadow-card: 0 8px 40px rgba(45, 42, 38, 0.08);
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Happy Project | A Life Well-Lived</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-bright": "#fdf9f3",
+              "on-primary-container": "#fffbff",
+              "surface-tint": "#8c4d38",
+              "on-primary-fixed": "#380d01",
+              "inverse-surface": "#31302d",
+              "on-secondary-fixed-variant": "#3d4b30",
+              "tertiary": "#735c00",
+              "secondary-fixed-dim": "#bbcca9",
+              "surface-variant": "#e6e2dc",
+              "on-background": "#1c1c18",
+              "error": "#ba1a1a",
+              "surface-container-high": "#ebe8e2",
+              "on-primary": "#ffffff",
+              "tertiary-fixed": "#ffe088",
+              "on-primary-fixed-variant": "#703723",
+              "primary-fixed-dim": "#ffb59d",
+              "surface-container-low": "#f7f3ed",
+              "surface-container-highest": "#e6e2dc",
+              "on-surface": "#1c1c18",
+              "tertiary-container": "#cca830",
+              "on-secondary": "#ffffff",
+              "on-tertiary-container": "#4f3e00",
+              "outline": "#86736d",
+              "inverse-primary": "#ffb59d",
+              "primary-container": "#a7634c",
+              "on-error-container": "#93000a",
+              "surface-container-lowest": "#ffffff",
+              "surface-dim": "#dddad4",
+              "error-container": "#ffdad6",
+              "surface": "#fdf9f3",
+              "primary-fixed": "#ffdbd0",
+              "on-tertiary-fixed": "#241a00",
+              "inverse-on-surface": "#f4f0ea",
+              "surface-container": "#f1ede7",
+              "background": "#fdf9f3",
+              "primary": "#894b36",
+              "on-surface-variant": "#53433e",
+              "on-secondary-fixed": "#121f09",
+              "outline-variant": "#d8c2bb",
+              "tertiary-fixed-dim": "#e9c349",
+              "on-tertiary-fixed-variant": "#574500",
+              "on-secondary-container": "#58674b",
+              "secondary-container": "#d4e5c1",
+              "secondary": "#546347",
+              "on-tertiary": "#ffffff",
+              "on-error": "#ffffff",
+              "secondary-fixed": "#d7e8c4"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif", "serif"],
+              "body": ["Plus Jakarta Sans", "sans-serif"],
+              "label": ["Plus Jakarta Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3 { font-family: 'Noto Serif', serif; }
+        .glass-nav {
+            backdrop-filter: blur(20px);
         }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--warm-white);
-            color: var(--text-dark);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 500;
-            line-height: 1.2;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 60px 24px;
-            background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -20%;
-            width: 140%;
-            height: 140%;
-            background: radial-gradient(ellipse at center, rgba(244, 162, 97, 0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 720px;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.2rem, 6vw, 3.5rem);
-            margin-bottom: 20px;
-            color: var(--text-dark);
-            letter-spacing: -0.02em;
-        }
-
-        .hero h1 span {
-            color: var(--coral);
-            font-style: italic;
-        }
-
-        .hero-subhead {
-            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-            color: var(--text-muted);
-            margin-bottom: 36px;
-            font-weight: 300;
-            max-width: 560px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px 36px;
-            font-size: 1rem;
-            font-weight: 500;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-primary {
-            background: var(--coral);
-            color: white;
-            box-shadow: 0 8px 24px rgba(244, 162, 97, 0.35);
-        }
-
-        .btn-primary:hover {
-            background: var(--coral-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(244, 162, 97, 0.4);
-        }
-
-        /* Who This Is For */
-        .section {
-            padding: 80px 24px;
-        }
-
-        .section-dark {
-            background: var(--text-dark);
-            color: white;
-        }
-
-        .section-title {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            text-align: center;
-            margin-bottom: 48px;
-        }
-
-        .section-dark .section-title {
-            color: white;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: white;
-            padding: 32px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-card);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-        }
-
-        .card-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--coral-light), var(--coral));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-
-        .card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* Why People Are Paying Attention */
-        .attention-section {
-            background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
-            position: relative;
-        }
-
-        .attention-section::before {
-            content: '"';
-            position: absolute;
-            top: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Playfair Display', serif;
-            font-size: 20rem;
-            color: var(--coral-light);
-            opacity: 0.15;
-            line-height: 1;
-            pointer-events: none;
-        }
-
-        .attention-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .attention-content p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            line-height: 1.9;
-        }
-
-        .attention-content p + p {
-            margin-top: 24px;
-        }
-
-        /* Testimonials */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 36px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-card);
-            text-align: center;
-        }
-
-        .testimonial-quote {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 1.1rem;
-            font-style: italic;
-            color: var(--text-dark);
-            margin-bottom: 16px;
-            line-height: 1.7;
-        }
-
-        .testimonial-author {
-            color: var(--coral);
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        /* Future Pace */
-        .future-section {
-            background: var(--text-dark);
-            color: white;
-            text-align: center;
-        }
-
-        .future-content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .future-content p {
-            font-size: 1.15rem;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 2;
-        }
-
-        .future-content p span {
-            color: var(--coral-light);
-            font-weight: 500;
-        }
-
-        /* Lead Form */
-        .form-section {
-            background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
-        }
-
-        .form-container {
-            max-width: 480px;
-            margin: 0 auto;
-            background: white;
-            padding: 48px 40px;
-            border-radius: 24px;
-            box-shadow: var(--shadow-card);
-        }
-
-        .form-intro {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        .form-intro p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-dark);
-            margin-bottom: 8px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 14px 20px;
-            font-size: 1rem;
-            border: 2px solid #EDE8E4;
-            border-radius: 12px;
-            background: var(--warm-white);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--coral);
-            box-shadow: 0 0 0 4px rgba(244, 162, 97, 0.15);
-        }
-
-        .form-group input::placeholder {
-            color: var(--text-light);
-        }
-
-        .btn-full {
-            width: 100%;
-            margin-top: 12px;
-        }
-
-        /* Soft Close */
-        .soft-close {
-            text-align: center;
-            padding: 60px 24px;
-            background: var(--warm-white);
-        }
-
-        .soft-close p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 500px;
-            margin: 0 auto;
-            font-style: italic;
-            font-family: 'Playfair Display', Georgia, serif;
-        }
-
-        .soft-close .signature {
-            margin-top: 24px;
-            color: var(--coral);
-            font-weight: 500;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 32px 24px;
-            background: var(--text-dark);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.85rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-content {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        .card, .testimonial-card {
-            animation: fadeInUp 0.6s ease forwards;
-            animation-delay: calc(var(--index) * 0.1s);
-            opacity: 0;
-        }
-
-        /* Mobile Adjustments */
-        @media (max-width: 640px) {
-            .section {
-                padding: 60px 20px;
-            }
-
-            .card {
-                padding: 24px;
-            }
-
-            .testimonial-card {
-                padding: 28px;
-            }
-
-            .form-container {
-                padding: 32px 24px;
-            }
-
-            .hero {
-                padding: 40px 20px;
-                min-height: auto;
-                padding-top: 80px;
-                padding-bottom: 80px;
-            }
+        .editorial-shadow {
+            shadow: 0 8px 24px rgba(28, 28, 24, 0.04);
         }
     </style>
-</head>
-<body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Parents… what if the <span>extra you need</span> isn't another job—but a better way?</h1>
-                <p class="hero-subhead">Some families are finding a way to earn extra income and create more flexible time—without leaving their current work or starting from scratch.</p>
-                <a href="#lead-form" class="btn btn-primary">👉 See if this is for you</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Who This Is For -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Who This Is For</h2>
-            <div class="grid-3">
-                <div class="card" style="--index: 1">
-                    <div class="card-icon">👨‍👩‍👧</div>
-                    <h3>Parents</h3>
-                    <p>Parents who want extra income—without sacrificing time with family</p>
-                </div>
-                <div class="card" style="--index: 2">
-                    <div class="card-icon">💼</div>
-                    <h3>Professionals</h3>
-                    <p>Working professionals or entrepreneurs who feel like something is still missing</p>
-                </div>
-                <div class="card" style="--index: 3">
-                    <div class="card-icon">✨</div>
-                    <h3>Open-Minded</h3>
-                    <p>Open-minded, but not interested in anything pushy or "too good to be true"</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why People Are Paying Attention -->
-    <section class="section attention-section">
-        <div class="container">
-            <h2 class="section-title">Why People Are Paying Attention</h2>
-            <div class="attention-content">
-                <p>This isn't about working more hours.</p>
-                <p>There's a system people follow. A community that supports each other. And real families doing this—while still prioritizing their time at home.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">What They're Saying</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card" style="--index: 1">
-                    <p class="testimonial-quote">"I didn't leave my job… but now we have extra coming in."</p>
-                    <p class="testimonial-author">— Marie, Manila</p>
-                </div>
-                <div class="testimonial-card" style="--index: 2">
-                    <p class="testimonial-quote">"I thought it needed a big investment. It didn't."</p>
-                    <p class="testimonial-author">— Jigs, Cebu</p>
-                </div>
-                <div class="testimonial-card" style="--index: 3">
-                    <p class="testimonial-quote">"Finally found something that doesn't feel forced."</p>
-                    <p class="testimonial-author">— Linda, Vancouver</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Future Pace -->
-    <section class="section future-section">
-        <div class="container">
-            <div class="future-content">
-                <h2 class="section-title" style="margin-bottom: 32px;">What if…</h2>
-                <p>
-                    <span>You felt more at ease</span> when bills come in?<br><br>
-                    <span>You had something extra</span>—without working overtime?<br><br>
-                    <span>You were more present</span> with your family—not just on weekends?<br><br>
-                    Not perfect. But better.
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopAppBar Shell -->
+<nav class="fixed top-0 w-full z-50 bg-[#fdf9f3]/80 dark:bg-stone-900/80 backdrop-blur-xl shadow-[0_8px_24px_rgba(28,28,24,0.04)]">
+<div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#894b36]" data-icon="menu">menu</span>
+<span class="font-serif text-2xl italic tracking-tighter text-[#894b36] dark:text-[#c67d65]">The Happy Project</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-[#894b36] font-semibold font-sans tracking-widest uppercase text-xs hover:text-[#a7634c] transition-colors duration-300" href="#">Home</a>
+<a class="text-[#1c1c18]/60 dark:text-stone-400 font-sans tracking-widest uppercase text-xs hover:text-[#a7634c] transition-colors duration-300" href="#why">Our Vision</a>
+<a class="text-[#1c1c18]/60 dark:text-stone-400 font-sans tracking-widest uppercase text-xs hover:text-[#a7634c] transition-colors duration-300" href="#features">Benefits</a>
+</div>
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary px-6 py-2 rounded-full font-sans tracking-widest uppercase text-xs font-semibold hover:opacity-90 transition-all active:scale-95">
+                Join Us
+            </button>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[795px] flex items-center overflow-hidden px-6 lg:px-20 py-20">
+<div class="absolute right-0 top-0 w-full lg:w-1/2 h-full z-0 opacity-20 lg:opacity-100">
+<img alt="Peaceful lifestyle image" class="w-full h-full object-cover" data-alt="A woman standing in a sunlit garden, feeling peaceful and free." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAauNo6BtkdjXCqw_GBxCut2gHZ8EahGVxGwFyBygYsVg3Xnnr6OV88lZSW_R9RDDEcZLmRVQvVZDanYYNnLAfU2oLIASp5KEffpXZHxOYzKl13FJ8vi5C7sAHCdd-k0GuMiO4lC150Ynt3x2-yjNK-TIwwBfXHZhUWhIyYyccmjcjD_2_mJFO3RvxRq-mlNLOuR1Y6W4vID3cJucgxJ1ryVXGGAvCSJfXPbKFFa_hVAEmfmUfbvvQWh4GOsRivEYdIH-nRT0bieQ"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-2xl">
+<span class="text-tertiary font-label text-sm uppercase tracking-[0.3em] mb-4 block">A Curated Haven</span>
+<h1 class="text-5xl lg:text-7xl italic font-headline text-on-background leading-tight mb-6">
+                    The Secret to a <br/><span class="text-primary">Life Well-Lived</span>
+</h1>
+<p class="text-xl text-on-surface-variant leading-relaxed mb-10 max-w-lg">
+                    Build a healthier, happier, freer life through intentional choices and a community that elevates you.
                 </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lead Form -->
-    <section class="section form-section" id="lead-form">
-        <div class="container">
-            <div class="form-container">
-                <div class="form-intro">
-                    <h2 class="section-title" style="margin-bottom: 12px;">Take a Look</h2>
-                    <p>If you're a little curious how this works, you can take a look. Just leave your details and we'll send it to you.</p>
-                </div>
-                <form onsubmit="event.preventDefault(); alert('Thanks! We\'ll be in touch soon.');">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="whatsapp">WhatsApp</label>
-                        <input type="tel" id="whatsapp" name="whatsapp" placeholder="+63 912 345 6789">
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">👉 Send me the details</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Soft Close -->
-    <section class="soft-close">
-        <div class="container">
-            <p>You don't have to decide anything today. But if something here resonated… it might be worth taking a look.</p>
-            <p class="signature">— Faye & The Happy Project ❤️</p>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>© 2026 The Happy Project. All rights reserved.</p>
-        </div>
-    </footer>
-</body>
-</html>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-10 py-4 rounded-full font-label font-bold text-center hover:shadow-lg transition-all active:scale-95" href="#details">
+                        Get the Details
+                    </a>
+<a class="px-10 py-4 rounded-full font-label font-bold text-on-surface border border-outline-variant/30 text-center hover:bg-surface-container-low transition-all" href="#why">
+                        Learn More
+                    </a>
+</div>
+</div>
+</section>
+<!-- Why People Are Curious -->
+<section class="py-24 bg-surface-container-low px-6" id="why">
+<div class="max-w-5xl mx-auto text-center mb-16">
+<h2 class="text-4xl italic mb-6">Why is everyone seeking more?</h2>
+<div class="w-24 h-px bg-primary/30 mx-auto mb-8"></div>
+<p class="text-lg text-on-surface-variant leading-relaxed">
+                    We've noticed a shift. People are tired of the noise and the toxins. They are looking for better options—healthier homes, smarter income streams that don't steal their time, and a community that feels like home. You're here because you know there's a more intentional way to live.
+                </p>
+</div>
+<div class="grid md:grid-cols-2 gap-12 max-w-7xl mx-auto items-center">
+<div class="rounded-xl overflow-hidden shadow-2xl transform rotate-1">
+<img alt="Interior home design" class="w-full h-full object-cover" data-alt="A beautiful modern living room filled with plants and soft lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg4DfM4VGYW7WYHDsxMdOzSvCbMNaqJYjeVbqVnvE2Z5kGSvO58BcJb1dwkA_kSK0FRKD5FWpY881Y5xzyRKuyeO6E5xTD8zRT8RKwogk7gQXkFNIB-MjlYY1Mr_kcf7cPqr0kK1y97XbuYanUA5BF09o0p1MjNoOLH08RiGrhXbUrA92_FHTUmxJkOYFEF6UC4EALAIJddKPkqiWc725xg37-sGPMCzLdu6vHofBX_vJouj_9MTJklbHzO5ZN7UA9xa2C7-09gw"/>
+</div>
+<div class="space-y-8 p-8">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="spa">spa</span>
+<div>
+<h3 class="text-2xl mb-2 italic">Wellness Redefined</h3>
+<p class="text-on-surface-variant">Swap the synthetic for the organic. We help you curate a sanctuary that promotes healing.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="auto_awesome">auto_awesome</span>
+<div>
+<h3 class="text-2xl mb-2 italic">True Abundance</h3>
+<p class="text-on-surface-variant">Imagine a life where your income grows as you help others bloom. It's not just business; it's legacy.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Grid (Bento Style) -->
+<section class="py-24 px-6 max-w-7xl mx-auto" id="features">
+<h2 class="text-4xl italic text-center mb-20">The Pillars of Your Transformation</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="md:col-span-2 bg-surface-container-lowest p-10 rounded-xl shadow-[0_8px_24px_rgba(28,28,24,0.04)] group hover:-translate-y-1 transition-all duration-500">
+<span class="material-symbols-outlined text-tertiary mb-6 block text-4xl" data-icon="home_health">home_health</span>
+<h3 class="text-3xl italic mb-4">Healthier Home</h3>
+<p class="text-on-surface-variant mb-6 text-lg">Pure environments lead to clear minds. Discover how to eliminate hidden toxins and breathe deeper in your own sanctuary.</p>
+<div class="h-40 w-full rounded-lg overflow-hidden mt-6">
+<img alt="Natural home products" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Sunlight hitting natural wooden furniture and organic fabrics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwnbuIbqT6dIcBEmx7M-mBBKq5Bg3JAG0PwESf8nf7ujFDaRXk06mMZ_GNaUlQmyU3Ad_j_y2PqKUy1R-dGJh5NhEoUvqEqh7WYUkl8lNUcNL38wMAIVwGq9EiE8XQAIXH-WKA4aKPaX9AmLmAtxgEazwJSFVtFkfK477GjB4J8RVZwSa_dKFD7l8ZBTibQIjCLua0sJL0GwiKMUZ3iQuwmNzJRZaxplU2dtpBu33Bwvr_ol_vaU2gjvlfCN3PnmitrDxkt6cWgQ"/>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-secondary-container p-10 rounded-xl shadow-[0_8px_24px_rgba(28,28,24,0.04)] group hover:-translate-y-1 transition-all">
+<span class="material-symbols-outlined text-secondary mb-6 block text-4xl" data-icon="payments">payments</span>
+<h3 class="text-3xl italic mb-4">Extra Income</h3>
+<p class="text-on-secondary-container mb-6">Build a sustainable side-hustle that honors your values and grants you the freedom to choose your schedule.</p>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-high p-10 rounded-xl shadow-[0_8px_24px_rgba(28,28,24,0.04)] group hover:-translate-y-1 transition-all">
+<span class="material-symbols-outlined text-primary mb-6 block text-4xl" data-icon="diversity_1">diversity_1</span>
+<h3 class="text-2xl italic mb-4">Supportive Community</h3>
+<p class="text-on-surface-variant">Surround yourself with women who speak your language and cheer for your highest self.</p>
+</div>
+<!-- Card 4 -->
+<div class="md:col-span-2 bg-primary-container p-10 rounded-xl shadow-[0_8px_24px_rgba(28,28,24,0.04)] text-on-primary group hover:-translate-y-1 transition-all">
+<div class="flex flex-col md:flex-row gap-8 items-center">
+<div class="flex-1">
+<span class="material-symbols-outlined text-on-primary mb-6 block text-4xl" data-icon="schema">schema</span>
+<h3 class="text-3xl italic mb-4">Simple System</h3>
+<p class="opacity-90 text-lg">No more guesswork. We provide the roadmap, the tools, and the training to ensure your path to success is clear.</p>
+</div>
+<div class="w-full md:w-1/3 aspect-square bg-white/10 backdrop-blur rounded-full flex items-center justify-center p-8">
+<span class="material-symbols-outlined text-6xl" data-icon="stars" data-weight="fill">stars</span>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="bg-tertiary-container p-10 rounded-xl shadow-[0_8px_24px_rgba(28,28,24,0.04)] group hover:-translate-y-1 transition-all">
+<span class="material-symbols-outlined text-on-tertiary-container mb-6 block text-4xl" data-icon="self_improvement">self_improvement</span>
+<h3 class="text-2xl italic mb-4">Personal Growth</h3>
+<p class="text-on-tertiary-container">Become the version of yourself you've always admired through our curated mentorship programs.</p>
+</div>
+<!-- Card 6 -->
+<div class="bg-surface-container-lowest p-10 rounded-xl shadow-[0_8px_24px_rgba(28,28,24,0.04)] group hover:-translate-y-1 transition-all">
+<span class="material-symbols-outlined text-primary mb-6 block text-4xl" data-icon="schedule">schedule</span>
+<h3 class="text-2xl italic mb-4">Time Freedom</h3>
+<p class="text-on-surface-variant">The luxury of being present. Reclaim your mornings, your afternoons, and your peace.</p>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-24 bg-surface px-6 relative overflow-hidden">
+<div class="absolute -left-20 top-40 opacity-5">
+<span class="font-serif text-[20rem] leading-none">“</span>
+</div>
+<div class="max-w-7xl mx-auto relative z-10">
+<h2 class="text-4xl italic text-center mb-20">Voices of Transformation</h2>
+<div class="grid md:grid-cols-3 gap-10">
+<div class="bg-surface-container-low p-10 rounded-xl border-l-4 border-primary">
+<p class="text-lg italic mb-8 leading-relaxed">"I finally found a way to be present for my children while building something I'm proud of. My home feels lighter, and so does my heart."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-primary-fixed">
+<img alt="Sarah" class="w-full h-full object-cover" data-alt="Close up portrait of a smiling woman." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhGXtIlSPnMf7QRRwTAiIE5ejJL4hLXB_K03T1tc0Y3Jj5KnTPVlBisNJUkpKlGOo_sGNUP0cB6oGfPdQYFNVESxl4U93UHNkoZ0ODApEJpxKNyXlFCzV1mYZSgaq1AY5RBEt0VCV6aCwJ7U3j0E4QOkCzQ4agi50JcWFUKEYweJH0OlNFW0FpJ3cdAeCNQKE7F7ETgiamqd2JMXGo_JcA-6qqz4T9FrMTSqH-RL_UO4LOKNlWk1NACaSs47SKGP8z8pizXPh68w"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Sarah M.</p>
+<p class="text-xs uppercase tracking-widest text-tertiary">Mom of 2</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-10 rounded-xl border-l-4 border-secondary">
+<p class="text-lg italic mb-8 leading-relaxed">"The community is unlike anything I've ever experienced. No competition—only collaboration and genuine support."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-secondary-fixed">
+<img alt="Elena" class="w-full h-full object-cover" data-alt="Professional woman looking confident and happy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdBCrjPCs2PrTNu36pwzrbFn0x4X3V1j-l4NHWhq5bQAq4LcfcEncIY5K0PvEPJGKzhNGKlTG0nczrr-hBhiX3IOq_2sCEg-WSm1JVLXZHuF9qwQNMwAkiv7oq9Wjn-f_AMlLD_cSKa8NKw43ZLO4VoJCP9pI34ZojHTwy26VkjdKzULraqhNq8eu2cyhp7FcHyrs3epJftXX0Q1f0oQUzWS0ccheiH9ZGM-O28yIsXCgQ8cMsM_yhD4xvLR0nyAy30Nj-EFDFMw"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Elena R.</p>
+<p class="text-xs uppercase tracking-widest text-tertiary">Entrepreneur</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-10 rounded-xl border-l-4 border-primary-container">
+<p class="text-lg italic mb-8 leading-relaxed">"I started for the products, but I stayed for the purpose. My life has expanded in ways I never thought possible at 45."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-primary-fixed">
+<img alt="Julianne" class="w-full h-full object-cover" data-alt="Radiant older woman smiling in natural light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByJW-5UCKCF_mIIExA7UgX-Qg97NyiFLST1-OcGrREPZiFb8mYkKAbIh-Ec6gY_kl_fggdYe7JXWwAWb5UqTKLkeEtxv68n1pd34FEMTNId029M1XcvJRjCqa-xSc2ygXEAmOcaINK_WIHxPY9lG2BpHiK0MF48UFwH-gANgOrjNUadO7BVaHNfeqsTmFSHzvITRk5m-DmWF2Yy7csoogApeSlCue-sVgGmYNZZUMCeUKW16KY-u4pW_PsfOQ05qYIVzpWTtQ7zA"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Julianne K.</p>
+<p class="text-xs uppercase tracking-widest text-tertiary">Wellness Seeker</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Future Pacing -->
+<section class="py-24 bg-surface-container-highest px-6">
+<div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+<div class="lg:w-1/2">
+<h2 class="text-5xl italic mb-8 leading-tight">Imagine waking up without the weight.</h2>
+<p class="text-xl text-on-surface-variant leading-relaxed mb-8">
+                        See your children playing in a home free from harsh chemicals. Feel the relief of a bank account that reflects your value, not just your hours. Picture yourself surrounded by a circle of friends who celebrate your every win.
+                    </p>
+<p class="text-xl font-bold text-primary italic">This isn't a dream. It's the project we're building together.</p>
+</div>
+<div class="lg:w-1/2 relative">
+<div class="rounded-xl overflow-hidden shadow-2xl relative z-10">
+<img alt="Community laughing" class="w-full h-full object-cover" data-alt="A group of women laughing and sharing a meal together at a beautifully set table." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR3wrFxVG58OgEQ4_6y2vOSiflOjQLsQZPOcu4_tCYlP1wm205s4ckFmYsU5GbwoRXHr-Re5mw1Ar9R6t-fIX18cJh6GUHtHGjOB_D9rdMk9ZaBwjMk7Yst_2PdKCOI7dP3E26eNvY1CrvCQOll0_aB37BNktdBZlJ5IEN8Z5z8KE0PfTl1ER1NVHt1LJAnWBEDk-AGGrgwTFZzItrC57H-6UYv-FfnM65H5ZO70THsQQkuAOhWXbkP1aZwUeBpeuSjNiTj0AoHQ"/>
+</div>
+<div class="absolute -bottom-10 -right-10 w-64 h-64 bg-secondary-container rounded-full -z-0 opacity-50 blur-3xl"></div>
+</div>
+</div>
+</section>
+<!-- Lead Capture Form -->
+<section class="py-24 px-6 bg-surface" id="details">
+<div class="max-w-4xl mx-auto bg-surface-container-lowest p-10 md:p-16 rounded-3xl shadow-[0_20px_50px_rgba(137,75,54,0.08)] relative">
+<div class="text-center mb-12">
+<h2 class="text-4xl italic mb-4">Start Your Journey</h2>
+<p class="text-on-surface-variant">Complete the form below to receive the detailed information package. A member of our community will personally reach out to guide you through the next steps.</p>
+</div>
+<form action="#" class="space-y-6">
+<div class="grid md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label text-xs uppercase tracking-widest text-on-surface-variant/70">First Name</label>
+<input class="w-full bg-surface-container-high border-none rounded-lg focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all py-4 px-6" placeholder="Your name" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label text-xs uppercase tracking-widest text-on-surface-variant/70">Last Name</label>
+<input class="w-full bg-surface-container-high border-none rounded-lg focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all py-4 px-6" placeholder="Your surname" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label text-xs uppercase tracking-widest text-on-surface-variant/70">Email Address</label>
+<input class="w-full bg-surface-container-high border-none rounded-lg focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all py-4 px-6" placeholder="hello@example.com" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="font-label text-xs uppercase tracking-widest text-on-surface-variant/70">Phone Number</label>
+<input class="w-full bg-surface-container-high border-none rounded-lg focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all py-4 px-6" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+<div class="pt-6">
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary py-5 rounded-full font-label font-bold text-lg hover:shadow-xl transition-all active:scale-[0.98]" type="submit">
+                            Start Your Journey
+                        </button>
+</div>
+<p class="text-center text-xs text-on-surface-variant/60 italic">
+                        We respect your privacy. No automated bots, just real human connection.
+                    </p>
+</form>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-24 bg-primary text-on-primary text-center px-6">
+<div class="max-w-3xl mx-auto">
+<h2 class="text-5xl italic mb-8">Hope is the first step. <br/>Action is the second.</h2>
+<p class="text-xl opacity-90 mb-12">You deserve to live a life that feels as good as it looks. Take the leap into your future today.</p>
+<a class="inline-block bg-white text-primary px-12 py-5 rounded-full font-label font-bold text-xl hover:bg-surface transition-all" href="#details">
+                    Get the Information Now
+                </a>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full py-12 px-8 mt-20 bg-[#f7f3ed] dark:bg-stone-950">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6 max-w-7xl mx-auto">
+<span class="font-serif text-lg italic text-[#894b36]">The Happy Project</span>
+<div class="flex gap-8">
+<a class="text-[#1c1c18]/60 dark:text-stone-500 font-sans text-sm tracking-tight hover:text-[#894b36] transition-all" href="#">Privacy</a>
+<a class="text-[#1c1c18]/60 dark:text-stone-500 font-sans text-sm tracking-tight hover:text-[#894b36] transition-all" href="#">Terms</a>
+<a class="text-[#1c1c18]/60 dark:text-stone-500 font-sans text-sm tracking-tight hover:text-[#894b36] transition-all" href="#">Contact</a>
+<a class="text-[#894b36] underline decoration-[#e9c349] decoration-2 underline-offset-4 font-sans text-sm tracking-tight" href="#">Our Vision</a>
+</div>
+<p class="text-sm tracking-tight text-[#1c1c18]/70 dark:text-stone-400">© 2024 The Happy Project. Curated with Intention.</p>
+</div>
+</footer>
+</body></html>
