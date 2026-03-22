@@ -3,174 +3,890 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Happy Project - Freedom Awaits</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>The Happy Project — A Better Way</title>
+    <meta name="description" content="Discover how families are finding extra income without sacrificing time with family.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --coral: #F4A261;
+            --coral-dark: #E8914E;
+            --coral-light: #FAD9C4;
+            --cream: #FEF9F5;
+            --warm-white: #FFFDFB;
+            --text-dark: #2D2A26;
+            --text-muted: #6B6560;
+            --text-light: #9A948E;
+            --border: #E8E4DF;
+            --shadow: rgba(45, 42, 38, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--warm-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 6vw, 3.25rem);
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--coral);
+            color: white;
+            box-shadow: 0 4px 20px rgba(244, 162, 97, 0.35);
+        }
+
+        .btn-primary:hover {
+            background: var(--coral-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(244, 162, 97, 0.45);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-dark);
+            border: 1.5px solid var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-dark);
+            color: white;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--coral-light) 0%, transparent 70%);
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 680px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--coral-dark);
+            margin-bottom: 24px;
+            padding: 8px 16px;
+            background: rgba(244, 162, 97, 0.15);
+            border-radius: 20px;
+        }
+
+        .hero h1 {
+            margin-bottom: 24px;
+            color: var(--text-dark);
+        }
+
+        .hero-subhead {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            max-width: 540px;
+        }
+
+        /* Who This Is For */
+        .who-this-is-for {
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            margin-bottom: 16px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            padding: 32px;
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--coral-light);
+            box-shadow: 0 8px 32px var(--shadow);
+            transform: translateY(-4px);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--coral-light) 0%, var(--cream) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Why People Are Paying Attention */
+        .why-attention {
+            background: var(--cream);
+            position: relative;
+        }
+
+        .why-attention::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to top, var(--cream), transparent);
+            pointer-events: none;
+        }
+
+        .attention-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .attention-item {
+            padding: 24px;
+        }
+
+        .attention-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--coral);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .attention-item h3 {
+            margin-bottom: 12px;
+        }
+
+        .attention-item p {
+            color: var(--text-muted);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .testimonial-card {
+            padding: 40px;
+            background: var(--warm-white);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 32px;
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: var(--coral-light);
+            line-height: 1;
+        }
+
+        .testimonial-quote {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+            padding-top: 24px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-name {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .testimonial-location {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        /* Future Pace */
+        .future-pace {
+            background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
+        }
+
+        .future-list {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .future-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .future-item:last-child {
+            border-bottom: none;
+        }
+
+        .future-icon {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            background: var(--coral);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .future-content h3 {
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .future-content p {
+            color: var(--text-muted);
+        }
+
+        .future-closing {
+            text-align: center;
+            margin-top: 48px;
+            padding: 32px;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .future-closing p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Lead Form */
+        .lead-form-section {
+            background: var(--text-dark);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lead-form-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--coral) 0%, transparent 70%);
+            opacity: 0.15;
+        }
+
+        .form-container {
+            max-width: 520px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .form-header {
+            margin-bottom: 40px;
+        }
+
+        .form-header .section-label {
+            color: var(--coral);
+            background: rgba(244, 162, 97, 0.15);
+        }
+
+        .form-header h2 {
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .form-header p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .lead-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1rem;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--coral);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 18px 32px;
+            font-size: 1.1rem;
+            margin-top: 8px;
+        }
+
+        .form-footer {
+            margin-top: 24px;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Soft Close */
+        .soft-close {
+            background: var(--cream);
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .soft-close-content {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .soft-close p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        .soft-close-signature {
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+
+        .heart {
+            color: var(--coral);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 32px 0;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--coral);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .success-message h3 {
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .success-message p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 80px 0 60px;
+            }
+
+            .hero-subhead {
+                font-size: 1.1rem;
+            }
+
+            .card {
+                padding: 24px;
+            }
+
+            .testimonial-card {
+                padding: 32px 24px;
+            }
+
+            .testimonial-card::before {
+                left: 24px;
+            }
+
+            .btn {
+                padding: 14px 28px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <p class="tagline">For Families Who Want More</p>
-            <h1>What If Your Family Could <span class="highlight">Work On Your Own Schedule?</span></h1>
-            <p class="subheadline">Thousands of families are discovering a new way to build income. Most don't know it's possible yet.</p>
-            <div class="curiosity-hook">
-                <p class="hook-text">🔓 See what they're figuring out...</p>
-            </div>
-            <a href="#waitlist" class="cta-button">Unlock the Secret</a>
-        </div>
-        <div class="hero-visual">
-            <div class="floating-card">
-                <div class="card-icon">💭</div>
-                <p>"I never thought this was possible..."</p>
-            </div>
-            <div class="floating-card card-2">
-                <div class="card-icon">⚡</div>
-                <p>"Our schedule finally belongs to us"</p>
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-tag animate-in">The Happy Project</span>
+                <h1 class="animate-in delay-1">Parents… what if the extra you need isn't another job—but a better way?</h1>
+                <p class="hero-subhead animate-in delay-2">Some families are finding a way to earn extra income and create more flexible time—without leaving their current work or starting from scratch.</p>
+                <div class="animate-in delay-3">
+                    <a href="#lead-form" class="btn btn-primary">👉 See if this is for you</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Curiosity Section -->
-    <section class="curiosity-section">
-        <h2>The Question Everyone's Asking</h2>
-        <div class="question-block">
-            <p class="big-question">"How are some families creating freedom without quitting their day jobs?"</p>
+    <!-- Who This Is For -->
+    <section class="who-this-is-for">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Who This Is For</p>
+                <h2 class="section-title">Three types of people are paying attention</h2>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">👨‍👩‍👧</div>
+                    <h3>Parents</h3>
+                    <p>Who want extra income—without sacrificing time with family</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💼</div>
+                    <h3>Professionals</h3>
+                    <p>Working professionals or entrepreneurs who feel like something is still missing</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🧠</div>
+                    <h3>Open Minds</h3>
+                    <p>Who are open-minded, but not interested in anything pushy or "too good to be true"</p>
+                </div>
+            </div>
         </div>
-        <div class="teaser-text">
-            <p>The answer might surprise you. It's not what most people think.</p>
-            <p class="reveal-hint">👇 There's something they discovered...</p>
-        </div>
-        <a href="#waitlist" class="secondary-cta">I Want to Know</a>
     </section>
 
-    <!-- Social Proof -->
-    <section class="social-proof">
-        <div class="proof-stats">
-            <div class="stat">
-                <span class="stat-number">500+</span>
-                <span class="stat-label">Families Joined</span>
+    <!-- Why People Are Paying Attention -->
+    <section class="why-attention">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Why People Are Paying Attention</p>
+                <h2 class="section-title">This isn't about working more hours</h2>
             </div>
-            <div class="stat">
-                <span class="stat-number">98%</span>
-                <span class="stat-label">Recommend It</span>
-            </div>
-            <div class="stat">
-                <span class="stat-number">100%</span>
-                <span class="stat-label">Free to Start</span>
+            <div class="attention-grid">
+                <div class="attention-item">
+                    <div class="attention-number">01</div>
+                    <h3>There's a System</h3>
+                    <p>People follow a proven approach that works</p>
+                </div>
+                <div class="attention-item">
+                    <div class="attention-number">02</div>
+                    <h3>Community Support</h3>
+                    <p>A community that supports each other</p>
+                </div>
+                <div class="attention-item">
+                    <div class="attention-number">03</div>
+                    <h3>Real Families</h3>
+                    <p>Real families doing this while prioritizing time at home</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
-        <h2>What Families Are Saying</h2>
-        <div class="testimonial-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                <p class="testimonial-text">"We thought it was too good to be true. But after 3 months, we finally have weekends OFF. That never happened before."</p>
-                <p class="testimonial-author">— Sarah M., Mom of 2</p>
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Testimonials</p>
+                <h2 class="section-title">What people are saying</h2>
             </div>
-            <div class="testimonial-card">
-                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                <p class="testimonial-text">"As a busy dad, I needed something that wouldn't take more time. This system actually gave me MORE time with my kids."</p>
-                <p class="testimonial-author">— Mike R., Father of 3</p>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                <p class="testimonial-text">"I was skeptical at first. But the community support is real. We're not alone in this journey."</p>
-                <p class="testimonial-author">— Jen T., Single Mom</p>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                <p class="testimonial-text">"We went from stressed to blessed. Our family conversations changed. We're planning adventures again."</p>
-                <p class="testimonial-author">— David & Maria L.</p>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">I didn't leave my job… but now we have extra coming in.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">M</div>
+                        <div>
+                            <p class="testimonial-name">Marie</p>
+                            <p class="testimonial-location">Manila</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">I thought it needed a big investment. It didn't.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">J</div>
+                        <div>
+                            <p class="testimonial-name">Jigs</p>
+                            <p class="testimonial-location">Cebu</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">Finally found something that doesn't feel forced.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">L</div>
+                        <div>
+                            <p class="testimonial-name">Linda</p>
+                            <p class="testimonial-location">Vancouver</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Future Pacing Section -->
-    <section class="future-pacing">
-        <h2>Imagine This...</h2>
-        <div class="future-grid">
-            <div class="future-item">
-                <span class="future-icon">🏠</span>
-                <h3>Work From Home</h3>
-                <p>Be present for breakfast, homework, and bedtime</p>
+    <!-- Future Pace -->
+    <section class="future-pace">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Future Pace</p>
+                <h2 class="section-title">What if…</h2>
             </div>
-            <div class="future-item">
-                <span class="future-icon">✈️</span>
-                <h3>Choose Your Hours</h3>
-                <p>Morning person? Night owl? Work when it fits your family</p>
+            <div class="future-list">
+                <div class="future-item">
+                    <div class="future-icon">✨</div>
+                    <div class="future-content">
+                        <h3>You felt more at ease when bills come in?</h3>
+                        <p>That peace of mind you deserve</p>
+                    </div>
+                </div>
+                <div class="future-item">
+                    <div class="future-icon">⏰</div>
+                    <div class="future-content">
+                        <h3>You had something extra—without working overtime?</h3>
+                        <p>More time for what matters</p>
+                    </div>
+                </div>
+                <div class="future-item">
+                    <div class="future-icon">🏠</div>
+                    <div class="future-content">
+                        <h3>You were more present with your family—not just on weekends?</h3>
+                        <p>Not perfect. But better.</p>
+                    </div>
+                </div>
             </div>
-            <div class="future-item">
-                <span class="future-icon">💰</span>
-                <h3>Build Income</h3>
-                <p>A system that grows with your family's needs</p>
-            </div>
-            <div class="future-item">
-                <span class="future-icon">🤝</span>
-                <h3>Join Community</h3>
-                <p>Connect with other families on the same journey</p>
+            <div class="future-closing">
+                <p>You don't have to decide anything today.<br>But if something here resonated… it might be worth taking a look.</p>
             </div>
         </div>
     </section>
 
-    <!-- Lead Form Section -->
-    <section class="waitlist-section" id="waitlist">
-        <div class="form-container">
-            <div class="form-header">
-                <span class="badge">🔒 Limited Access</span>
-                <h2>Get the Details</h2>
-                <p>Join families who are already discovering this. No pressure, just information.</p>
+    <!-- Lead Form -->
+    <section class="lead-form-section" id="lead-form">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <p class="section-label">Get the Details</p>
+                    <h2>Ready to learn more?</h2>
+                    <p>If you're a little curious how this works, you can take a look. Just leave your details and we'll send it to you.</p>
+                </div>
+                <form class="lead-form" id="happyProjectForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="What's your name?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp Number</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" placeholder="+63 900 000 0000" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit">👉 Send me the details</button>
+                    <p class="form-footer">We respect your privacy. No spam, ever.</p>
+                </form>
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon">✓</div>
+                    <h3>Got it! We're on it.</h3>
+                    <p>Check your WhatsApp and email for the details we promised.</p>
+                </div>
             </div>
-            <form id="leadForm" class="lead-form">
-                <div class="form-group">
-                    <label for="name">First Name</label>
-                    <input type="text" id="name" name="name" placeholder="What's your name?" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="Where should we send info?" required>
-                </div>
-                <div class="form-group">
-                    <label for="role">I am a...</label>
-                    <select id="role" name="role" required>
-                        <option value="">Select your role</option>
-                        <option value="parent">Parent</option>
-                        <option value="aspiring">Aspiring Entrepreneur</option>
-                        <option value="mlm">MLM/Network Marketer</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="struggle">Biggest challenge?</label>
-                    <select id="struggle" name="struggle" required>
-                        <option value="">What's holding you back?</option>
-                        <option value="time">Not enough time</option>
-                        <option value="money">Need more income</option>
-                        <option value="freedom">Want schedule freedom</option>
-                        <option value="direction">Don't know where to start</option>
-                    </select>
-                </div>
-                <button type="submit" class="submit-button">Show Me What's Possible →</button>
-                <p class="form-footer">🔒 Your info is safe. No spam, ever.</p>
-            </form>
-            <div id="formSuccess" class="success-message" style="display: none;">
-                <div class="success-icon">🎉</div>
-                <h3>You're In!</h3>
-                <p>Check your inbox. We're sending you everything you need to get started.</p>
+        </div>
+    </section>
+
+    <!-- Soft Close -->
+    <section class="soft-close">
+        <div class="container">
+            <div class="soft-close-content">
+                <p>You don't have to decide anything today.</p>
+                <p>But if something here resonated…</p>
+                <p>it might be worth taking a look.</p>
+                <p class="soft-close-signature">— Faye & The Happy Project <span class="heart">❤️</span></p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="container">
             <p>© 2026 The Happy Project. All rights reserved.</p>
-            <p class="footer-note">Helping families achieve freedom, one step at a time.</p>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script>
+        // Form handling
+        document.getElementById('happyProjectForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const submitBtn = form.querySelector('.btn-submit');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            // Store in localStorage (for demo purposes)
+            localStorage.setItem('happyProjectLead', JSON.stringify(formData));
+            
+            // Simulate submission delay
+            setTimeout(() => {
+                form.style.display = 'none';
+                successMessage.classList.add('show');
+                
+                // Log to console (in production, this would send to a server)
+                console.log('Lead submitted:', formData);
+            }, 1000);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .testimonial-card, .attention-item, .future-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
